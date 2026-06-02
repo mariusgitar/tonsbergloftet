@@ -446,7 +446,7 @@ function SeksjonOm({ answers }) {
         <p style={{ color: TEAL, fontWeight: 600, fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 10 }}>Om TønsbergLØFTET</p>
         <h2 style={{ fontSize: "clamp(22px,5vw,28px)", fontWeight: 700, color: INK, marginBottom: 16, lineHeight: 1.2 }}>Vi støtter kommunen i å jobbe på nye måter.</h2>
         <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 12 }}>TønsbergLØFTET er et eget team i Tønsberg kommune. Vi bidrar inn i konkrete utviklings- og innovasjonsprosjekter på tvers av hele organisasjonen – gjennom rådgivning, prosjektledelse og kompetansebygging.</p>
-         <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 12 }}> <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 12 }}>TønsbergLØFTET er et eget team i Tønsberg kommune. Vi bidrar inn i konkrete utviklings- og innovasjonsprosjekter på tvers av hele organisasjonen – gjennom rådgivning, prosjektledelse og kompetansebygging.</p></p>
+         <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 12 }}> <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 12 }}>Noen ganger holder det med litt sparring for å komme seg videre. Noen ganger bistår vi i prosessen fra A til Å.</p></p>
         <p style={{ fontSize: 15, color: WARM_GRAY, lineHeight: 1.8, marginBottom: 28 }}>I all vår jobb setter vi disse prinsippene i sentrum..</p>
 
         {/* Prinsipper */}
