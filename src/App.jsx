@@ -242,10 +242,9 @@ function LoopChapter() {
         <div className="loop-track">
           {rep.map(function(fase, i) {
             return (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, margin: "0 12px", flexShrink: 0 }}>
-                <img src={fase.img} alt={fase.label} style={{ width: 52, height: 52, objectFit: "contain" }} />
-                <span style={{ fontSize: 15, fontWeight: 700, color: fase.col, whiteSpace: "nowrap" }}>{fase.label}</span>
-                <span style={{ fontSize: 18, color: "rgba(255,255,255,0.15)", marginLeft: 4 }}>→</span>
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, margin: "0 4px", flexShrink: 0 }}>
+                <img src={fase.img} alt={fase.label} style={{ width: 56, height: 56, objectFit: "contain" }} />
+                <span style={{ fontSize: 16, color: "rgba(255,255,255,0.18)" }}>→</span>
               </div>
             );
           })}
@@ -284,9 +283,9 @@ function HoppInnLage() {
 
         {/* Høyre: alle tre ikoner stablet, Lage aktiv */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", flexShrink: 0 }}>
-          <img src="/Lære ikon.png" alt="Lære" style={{ width: 64, height: 64, objectFit: "contain", opacity: 0.3 }} />
           <img src="/Lage ikon.png" alt="Lage" style={{ width: 64, height: 64, objectFit: "contain", opacity: 1 }} />
           <img src="/Prøve ikon.png" alt="Prøve" style={{ width: 64, height: 64, objectFit: "contain", opacity: 0.3 }} />
+          <img src="/Lære ikon.png" alt="Lære" style={{ width: 64, height: 64, objectFit: "contain", opacity: 0.3 }} />
         </div>
       </div>
     </div>
@@ -318,9 +317,9 @@ function HoppInnProve() {
 
         {/* Høyre: alle tre ikoner stablet, Prøve aktiv */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", flexShrink: 0 }}>
+          <img src="/Prøve ikon.png" alt="Prøve" style={{ width: 64, height: 64, objectFit: "contain", opacity: 1 }} />
           <img src="/Lære ikon.png" alt="Lære" style={{ width: 64, height: 64, objectFit: "contain", opacity: 0.3 }} />
           <img src="/Lage ikon.png" alt="Lage" style={{ width: 64, height: 64, objectFit: "contain", opacity: 0.3 }} />
-          <img src="/Prøve ikon.png" alt="Prøve" style={{ width: 64, height: 64, objectFit: "contain", opacity: 1 }} />
         </div>
       </div>
     </div>
@@ -354,6 +353,7 @@ function LLPProgressBar({ activeIndex, progress, onJump }) {
 function LLPScrollytelling({ scrollContainer, answers, onSvarSet }) {
   var [progress, setProgress] = useState(0);
   var [activeIndex, setActiveIndex] = useState(0);
+  var [subProgress, setSubProgress] = useState(0);
   var sectionRef = useRef(null);
   var rafRef = useRef(null);
 
@@ -371,7 +371,11 @@ function LLPScrollytelling({ scrollContainer, answers, onSvarSet }) {
         if (maxScroll <= 0) return;
         var raw = Math.min(Math.max((scrollTop - sectionTop) / maxScroll, 0), 1);
         setProgress(raw);
-        setActiveIndex(Math.min(Math.floor(raw * llpChapters.length), llpChapters.length - 1));
+        var idx = Math.min(Math.floor(raw * llpChapters.length), llpChapters.length - 1);
+        setActiveIndex(idx);
+        var chapterSize = 1 / llpChapters.length;
+        var sub = Math.min(Math.max((raw - idx * chapterSize) / chapterSize, 0), 1);
+        setSubProgress(sub);
       });
     }
     container.addEventListener("scroll", handleScroll, { passive: true });
@@ -444,6 +448,8 @@ function LLPScrollytelling({ scrollContainer, answers, onSvarSet }) {
           <div style={{ position: "absolute", inset: 0, display: "flex", transform: "translateX("+translateX+"vw)", transition: "transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)", width: (llpChapters.length*100)+"vw" }}>
             {llpChapters.map(function(ch, i) {
               var dist = i - activeIndex, isActive = dist === 0;
+              // Parallax: aktiv slide bruker subProgress for å skyve ikonet
+              var parallaxY = isActive ? (subProgress - 0.5) * 40 : 0;
               return (
                 <div key={i} style={{ width: "100vw", height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", flexShrink: 0, opacity: isActive?1:Math.max(0,1-Math.abs(dist)*0.85), transform: "scale("+(isActive?1:0.95)+") translateX("+(dist*6)+"px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}>
                   {ch.type === "phase" && (
@@ -468,8 +474,8 @@ function LLPScrollytelling({ scrollContainer, answers, onSvarSet }) {
                           })}
                         </div>
 
-                        {/* Høyre: fasebilde */}
-                        <div style={{ flexShrink: 0 }}>
+                        {/* Høyre: fasebilde med parallax */}
+                        <div style={{ flexShrink: 0, transform: "translateY("+parallaxY+"px)", transition: "transform 0s" }}>
                           <img
                             src={"/"+(ch.phaseLabel === "Lære" ? "Lære ikon.png" : ch.phaseLabel === "Lage" ? "Lage ikon.png" : "Prøve ikon.png")}
                             alt={ch.phaseLabel}
