@@ -47,6 +47,7 @@ const survey = [
       { id: "metode", label: "Hvordan dere jobber (LLP-metoden)" },
       { id: "prosjekter", label: "Hva dere har laget (prosjekter)" },
       { id: "fremover", label: "Hva dere utforsker fremover" },
+      { id: "apper", label: "Konkrete apper og verktøy" },
       { id: "alt", label: "Alt litt" },
     ],
   },
@@ -131,9 +132,10 @@ const portefolje = [
 
 function getSectionOrder(answers) {
   var interesse = answers[1] || "alt";
-  if (interesse === "metode")    return ["om", "llp", "fremover", "prosjekter", "hmw", "kontakt"];
-  if (interesse === "prosjekter") return ["om", "prosjekter", "llp", "fremover", "hmw", "kontakt"];
-  if (interesse === "fremover")  return ["om", "fremover", "llp", "prosjekter", "hmw", "kontakt"];
+  if (interesse === "metode")    return ["llp", "om", "prosjekter", "fremover", "hmw", "kontakt"];
+  if (interesse === "prosjekter") return ["prosjekter", "om", "llp", "fremover", "hmw", "kontakt"];
+  if (interesse === "fremover")  return ["fremover", "om", "llp", "prosjekter", "hmw", "kontakt"];
+  if (interesse === "apper")     return ["fremover", "om", "llp", "prosjekter", "hmw", "kontakt"];
   return ["om", "llp", "prosjekter", "fremover", "hmw", "kontakt"];
 }
 
@@ -620,21 +622,20 @@ function SeksjonProsjekter() {
   );
 }
 
-function SeksjonFremover() {
-  var [aktivTab, setAktivTab] = useState("sandkasse");
+function SeksjonFremover({ initialTab }) {
+  var [aktivTab, setAktivTab] = useState(initialTab || "ki");
   var tabs = [
+    { id: "ki", label: "KI i lære, lage, prøve", emoji: "🤖", accent: LLP_PROVE },
     { id: "sandkasse", label: "Sandkassen", emoji: "🧪", accent: LLP_LAERE },
     { id: "system", label: "Innovasjonssystemet", emoji: "⚙️", accent: LLP_LAGE },
-    { id: "vibekoding", label: "Vibekoding", emoji: "🤖", accent: LLP_PROVE },
   ];
   var vibeprosjekter = [
-    { emoji: "🧩", title: "Workshopverktøy", desc: "En samling digitale verktøy for å fasilitere workshops – timer, abstemmingsverktøy, idévegg og mer." },
-    { emoji: "🧑‍🤝‍🧑", title: "Personagalleri", desc: "KI-genererte syntetiske personas for rask brukertesting. Last opp innsikt, få tilbake realistiske brukerprofiler." },
-    { emoji: "💬", title: "Chatbotfabrikk", desc: "Bygg enkle chatboter for intern bruk uten kode. Koble til kommunens egne dokumenter og rutiner." },
-    { emoji: "🔧", title: "Byråkratens lommekniv", desc: "En samling små verktøy som løser konkrete kontorfloker – skjemaassistent, møtereferatgenerator, brevmal-builder og mer." },
+    { emoji: "🧩", title: "Workshopverktøy", desc: "En samling digitale verktøy for å fasilitere workshops – timer, abstemmingsverktøy, idévegg og mer.", url: "https://proverommet.vercel.app/workshop" },
+    { emoji: "🧑‍🤝‍🧑", title: "Personagalleri – syntest", desc: "KI-genererte syntetiske personas for rask brukertesting. Skriv inn hypoteser og tekst, få tilbake realistiske brukerprofiler.", url: "https://proverommet.vercel.app/syntest" },
+    { emoji: "💬", title: "Chatbotfabrikk", desc: "Hva om fagpersoner og ansatte kunne satt opp sine egne \"ekspertboter\" med ett klikk?", url: "https://proverommet.vercel.app/botfabrikk" },
+    { emoji: "🔧", title: "Byråkratens lommekniv", desc: "En samling små verktøy som løser konkrete kontorfloker – skjemaassistent, møtereferatgenerator, brevmal-builder og mer.", url: "https://mariusgitar.github.io/lommekniv-for-byrakrater/" },
+    { emoji: "🗂️", title: "Prøverommet", desc: "Stedet vi lagrer de ulike vibekodede appene – med fungerende demo, produktkart eller direktelink til appene som kan testes.", url: "https://proverommet.vercel.app/" },
   ];
-
-  var aktivAccent = tabs.find(function(t){ return t.id === aktivTab; })?.accent || LLP_LAERE;
 
   return (
     <section style={{ background: NAVY_BG, padding: "56px 0 0" }}>
@@ -657,6 +658,33 @@ function SeksjonFremover() {
       </div>
 
       <div style={{ padding: "32px 24px 56px", maxWidth: 640, margin: "0 auto" }}>
+
+        {aktivTab === "ki" && (
+          <div>
+            <p style={{ fontSize: 22, fontFamily: "'Caveat', cursive", color: LLP_PROVE, marginBottom: 16 }}>"Hva om hvem som helst kunne bygge verktøy?"</p>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 24 }}>Vibekoding handler om å bruke KI til å utvikle raske prototyper og digitale verktøy – uten å være utvikler. Vi utforsker hvordan dette kan senke terskelen for innovasjon i kommunen.</p>
+            <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>Verktøyportefølje</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 24 }}>
+              {vibeprosjekter.map(function(v) {
+                return (
+                  <a key={v.title} href={v.url} target="_blank" rel="noopener noreferrer"
+                    style={{ background: "rgba(230,157,125,0.06)", border: "1px solid rgba(230,157,125,0.2)", borderRadius: 10, padding: "14px 16px", display: "flex", gap: 12, alignItems: "flex-start", textDecoration: "none", transition: "background 0.2s, border-color 0.2s", cursor: "pointer" }}
+                    onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(230,157,125,0.14)"; e.currentTarget.style.borderColor = "rgba(230,157,125,0.5)"; }}
+                    onMouseLeave={function(e){ e.currentTarget.style.background = "rgba(230,157,125,0.06)"; e.currentTarget.style.borderColor = "rgba(230,157,125,0.2)"; }}
+                  >
+                    <span style={{ fontSize: 20, flexShrink: 0 }}>{v.emoji}</span>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontSize: 14, fontWeight: 700, color: LLP_PROVE, marginBottom: 4 }}>{v.title}</p>
+                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", margin: 0, lineHeight: 1.6 }}>{v.desc}</p>
+                    </div>
+                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.2)", flexShrink: 0, alignSelf: "center" }}>↗</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {aktivTab === "sandkasse" && (
           <div>
             <p style={{ fontSize: 22, fontFamily: "'Caveat', cursive", color: LLP_LAERE, marginBottom: 16 }}>"Hva skjer hvis vi bare prøver?"</p>
@@ -691,26 +719,6 @@ function SeksjonFremover() {
           </div>
         )}
 
-        {aktivTab === "vibekoding" && (
-          <div>
-            <p style={{ fontSize: 22, fontFamily: "'Caveat', cursive", color: LLP_PROVE, marginBottom: 16 }}>"Hva om hvem som helst kunne bygge verktøy?"</p>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 24 }}>Vibekoding handler om å bruke KI til å utvikle raske prototyper og digitale verktøy – uten å være utvikler. Vi utforsker hvordan dette kan senke terskelen for innovasjon i kommunen.</p>
-            <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>Verktøyportefølje</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 24 }}>
-              {vibeprosjekter.map(function(v) {
-                return (
-                  <div key={v.title} style={{ background: "rgba(230,157,125,0.06)", border: "1px solid rgba(230,157,125,0.2)", borderRadius: 10, padding: "14px 16px", display: "flex", gap: 12, alignItems: "flex-start" }}>
-                    <span style={{ fontSize: 20, flexShrink: 0 }}>{v.emoji}</span>
-                    <div>
-                      <p style={{ fontSize: 14, fontWeight: 700, color: LLP_PROVE, marginBottom: 4 }}>{v.title}</p>
-                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", margin: 0, lineHeight: 1.6 }}>{v.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
@@ -967,15 +975,27 @@ function SeksjonKontakt({ answers, oppfolgingSvar }) {
 function MainContent({ answers, isStatic }) {
   var [oppfolgingSvar, setOppfolgingSvar] = useState(null);
   var containerRef = useRef(null);
+  var interesse = answers[1] || "alt";
   var sectionOrder = isStatic ? ["om","llp","prosjekter","fremover","hmw","kontakt"] : getSectionOrder(answers);
+  var fremoverInitialTab = interesse === "apper" ? "ki" : "ki";
   var seksjonMap = {
     om: <SeksjonOm key="om" answers={answers} />,
     llp: <LLPScrollytelling key="llp" scrollContainer={containerRef} answers={answers} onSvarSet={setOppfolgingSvar} />,
     prosjekter: <SeksjonProsjekter key="prosjekter" />,
-    fremover: <SeksjonFremover key="fremover" />,
+    fremover: <SeksjonFremover key="fremover" initialTab={fremoverInitialTab} />,
     hmw: <SeksjonProvLLP key="hmw" answers={answers} isStatic={isStatic} />,
     kontakt: <SeksjonKontakt key="kontakt" answers={answers} oppfolgingSvar={oppfolgingSvar} />,
   };
+
+  // Kuratert hero-tekst basert på interesse
+  var heroTekst = {
+    metode: "Her er LLP-metoden vår – fra teori til praksis.",
+    prosjekter: "Her er prosjektene vi har jobbet med.",
+    fremover: "Her er hva vi utforsker fremover.",
+    apper: "Her er de konkrete appene og verktøyene vi har bygget.",
+    alt: "For å løse dagens og fremtidige utfordringer må vi tenke nytt og jobbe på nye måter. TønsbergLØFTET støtter organisasjonen i dette arbeidet – på tvers av hele Tønsberg kommune.",
+  };
+
   return (
     <div ref={containerRef} style={{ fontFamily: "'Barlow', sans-serif", background: OFF_WHITE, height: "100vh", overflowY: "auto" }}>
       {!isStatic && <Feltnotat answers={answers} />}
@@ -983,7 +1003,7 @@ function MainContent({ answers, isStatic }) {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <p style={{ color: GREEN, fontSize: 10, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 700 }}>TønsbergLØFTET · Tønsberg kommune</p>
           <h1 style={{ fontSize: "clamp(28px,7vw,44px)", fontWeight: 800, color: "white", lineHeight: 1.1, marginBottom: 14 }}>Innovasjon –<br />å jobbe på nye måter.</h1>
-          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, maxWidth: 460 }}>For å løse dagens og fremtidige utfordringer må vi tenke nytt og jobbe på nye måter. TønsbergLØFTET støtter organisasjonen i dette arbeidet – på tvers av hele Tønsberg kommune.</p>
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, maxWidth: 460 }}>{heroTekst[interesse] || heroTekst.alt}</p>
           <div style={{ marginTop: 12 }}><StickyNote text="De fleste scroller forbi dette. Ta deg tid." /></div>
         </div>
       </section>
