@@ -91,7 +91,7 @@ const llpChapters = [
 const tjenester = [
   { emoji: "🤝", title: "Rådgivning og sparring", desc: "Noen ganger holder det med en god samtale. Vi hjelper deg å tenke gjennom utfordringen og finne en vei videre.", tag: "Rådgivning" },
   { emoji: "🏗️", title: "Prosjekt- og prosessledelse", desc: "Vi leder utviklings- og innovasjonsprosjekter fra A til Å – alltid etter prinsippene i Lære, lage, prøve.", tag: "Prosjektledelse" },
-  { emoji: "⚡", title: "Ekspressløp for innovasjon", desc: "Et intensivt og strukturert løp for å komme raskt fra utfordring til løsning. Tilpasset din situasjon.", tag: "Workshop" },
+  { emoji: "⚡", title: "Ekspressløp for innovasjon", desc: "Et intensivt og strukturert løp for å komme raskt fra utfordring til løsning. Det kan ta to dager. Det kan ta 6 uker.", tag: "Workshop" },
   { emoji: "🎓", title: "Kurs og kompetanse", desc: "Vi holder kurs og har laget et nettverk for kommuneinnovatører – for deg som vil lære mer og dele erfaringer.", tag: "Kompetanse" },
   { emoji: "📡", title: "Oppløft – digital møteplass", desc: "Én gang i måneden inviterer vi til læring, inspirasjon og deling. Åpent for kommunens ansatte og andre.", tag: "Nettverk" },
 ];
