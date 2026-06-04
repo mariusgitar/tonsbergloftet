@@ -99,36 +99,26 @@ const tjenester = [
 // ── Prosjektportefølje ────────────────────────────────────────────────────────
 const portefolje = [
   {
-    emoji: "🏗️", title: "Byggeløftet", etat: "Plan og bygg", status: "Avsluttet",
+    emoji: "🏗️", title: "Byggeløftet", kommunalområde: "Plan og bygg", status: "Avsluttet",
     desc: "Nye måter å jobbe på i plan- og byggesaker. Faste dialogarenaer med utbyggere, nye rutiner for oppstartsmøter og bedre styringsdata i saksbehandlingssystemet.",
     laerdom: "Kontinuerlig dialog med næringsliv gir raskere og bedre beslutninger.", faser: ["Lære", "Lage", "Prøve"],
   },
   {
-    emoji: "👶", title: "Bedre oppfølging av nyfødte", etat: "Helse og omsorg", status: "Avsluttet",
-    desc: "Ekspressløp for å kartlegge og forbedre kommunens oppfølging av nyfødte og familier i sårbare situasjoner. Resulterte i ny rutinehåndbok og tettere tverrfaglig samarbeid.",
-    laerdom: "Brukernes opplevelse avslørte gap ingen visste om.", faser: ["Lære", "Lage", "Prøve"],
+    emoji: "👶", title: "Trygge voksne", kommunalområde: "Oppvekst og læring", status: "Avsluttet",
+    desc: "Personaworkshop og ekspressløp med mål om å utvikle løsninger som skal gjøre foreldre tryggere i grensesetting, motstandsmestring og utvikling. 6 ukers ekspressløp og 3 pilotprosjekter har ført til en fast kursrigg for førstegangsforeldre og en oprativ kunnskapsbank for fagfolk som møter migrasjonsfamilier.",
+    laerdom: "Viktigheten av å snakke med bruker, ikke bare anta. ", faser: ["Lære", "Lage", "Prøve"],
   },
   {
-    emoji: "📋", title: "Digital saksbehandling NAV", etat: "NAV Tønsberg", status: "Pågår",
-    desc: "Kartlegging av flaskehalser i saksbehandlingsflyt. Identifiserte tre prosesser som kan effektiviseres betydelig med enkle digitale grep – nå i prototypefase.",
-    laerdom: "De ansatte visste løsningen. Vi hjalp dem å formulere den.", faser: ["Lære", "Lage"],
+    emoji: "📋", title: "Veien inn", kommunalområde: "Hele fjøla", status: "Pågår",
+    desc: "Utvikle tydelige mål for å redusere utenforskap, konkrete mekanismer for å måle konkrete utfall av tiltak og styring- og samarbeidsmekanismer for hele organisasjonen. ",
+    laerdom: "Det er stor avstand fra topp til bunn og vi må jobbe sammen med konkrete løsninger i samme rom.", faser: ["Lære", "Lage", "Prøve"],
   },
   {
-    emoji: "🏫", title: "Skole-hjem-samarbeid 2.0", etat: "Oppvekst", status: "Pågår",
-    desc: "Utforsker nye modeller for samarbeid mellom skole og foreldre, med særlig fokus på familier som opplever terskelen som høy. Brukerintervjuer er gjennomført – nå i lage-fase.",
-    laerdom: "Terskelen er ikke digital. Den er relasjonell.", faser: ["Lære", "Lage"],
+    emoji: "🏫", title: "Tønsbergtrappa", kommunalområde: "Mestring og helse", status: "ferdig",
+    desc: "Workshop med 120 ledere med mål om å utvikle og teste 14 prototyper for ulike tiltak i TøpnsbergTRAPPA. ",
+    laerdom: "Man lærer mer av å lage enn å prate", faser: ["Lære", "Lage", "Prøve"],
   },
-  {
-    emoji: "🗺️", title: "Tønsbergkartet", etat: "By- og stedsutvikling", status: "Avsluttet",
-    desc: "Medvirkningsprosess for kommuneplanen der innbyggere kunne markere steder som er viktige for dem. Over 800 innspill samlet inn via enkel digital løsning.",
-    laerdom: "Enkle verktøy senker terskelen for medvirkning dramatisk.", faser: ["Lære", "Prøve"],
-  },
-  {
-    emoji: "💊", title: "Legemiddelhåndtering sykehjem", etat: "Helse og omsorg", status: "Avsluttet",
-    desc: "Ekspressløp for å redusere feil i legemiddelhåndtering på sykehjem. Resulterte i ny sjekkliste og opplæringsmodul som nå er implementert på alle kommunale sykehjem.",
-    laerdom: "En enkel sjekkliste kan redde liv.", faser: ["Lære", "Lage", "Prøve"],
-  },
-];
+
 
 function getSectionOrder(answers) {
   var interesse = answers[1] || "alt";
