@@ -536,7 +536,6 @@ function SeksjonOm({ answers }) {
             { label: "Brukerorientert", desc: "Vi starter med folk som kjenner utfordringen på kroppen", color: LLP_LAERE },
             { label: "Eksperimentelt", desc: "Vi prøver raskt, lærer og justerer kurs", color: LLP_LAGE },
             { label: "Samarbeid", desc: "De beste ideene oppstår når ulike fagfelt møtes", color: GREEN },
-            { label: "På tvers", desc: "Vi jobber i hele Tønsberg kommune", color: LLP_PROVE },
           ].map(function(card) {
             return (
               <div key={card.label} style={{ background: "white", borderRadius: 10, overflow: "hidden", flex: "1 1 130px", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
@@ -1004,7 +1003,7 @@ function MainContent({ answers, isStatic }) {
           <p style={{ color: GREEN, fontSize: 10, letterSpacing: 2, textTransform: "uppercase", marginBottom: 10, fontWeight: 700 }}>TønsbergLØFTET · Tønsberg kommune</p>
           <h1 style={{ fontSize: "clamp(28px,7vw,44px)", fontWeight: 800, color: "white", lineHeight: 1.1, marginBottom: 14 }}>Innovasjon –<br />å jobbe på nye måter.</h1>
           <p style={{ fontSize: 16, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, maxWidth: 460 }}>{heroTekst[interesse] || heroTekst.alt}</p>
-          <div style={{ marginTop: 12 }}><StickyNote text="De fleste scroller forbi dette. Ta deg tid." /></div>
+          <div style={{ marginTop: 12 }}><StickyNote text="Vi må tørre å gjøre ting annerledes!" /></div>
         </div>
       </section>
       {sectionOrder.map(function(id) { return seksjonMap[id]; })}
