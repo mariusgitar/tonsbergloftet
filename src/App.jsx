@@ -1060,8 +1060,7 @@ export default function App() {
           <div style={{ maxWidth: 500, width: "100%", animation: "fadeIn 0.6s ease" }}>
             {introStep === 0 && (
               <div>
-                <div style={{ width: 48, height: 48, borderRadius: "50%", background: NAVY, marginBottom: 24, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🏙️</div>
-                <h1 style={{ fontSize: "clamp(26px,7vw,36px)", fontWeight: 800, color: INK, marginBottom: 10, lineHeight: 1.15 }}>Velkommen til TønsbergLØFTET.</h1>
+                <h1 style={{ fontSize: "clamp(26px,7vw,36px)", fontWeight: 800, color: INK, marginBottom: 10, lineHeight: 1.15 }}>Velkommen til TønsbergLØFTETS lekeplass.</h1>
                 <p style={{ fontSize: 15, color: WARM_GRAY, marginBottom: 28, lineHeight: 1.6 }}>Innovasjons- og tjenesteutviklingsenhet i Tønsberg kommune.</p>
                 <button onClick={function() { setIntroStep(1); }} style={{ background: NAVY, color: "white", border: "none", padding: "12px 24px", borderRadius: 8, fontSize: 15, cursor: "pointer", fontFamily: "'Barlow', sans-serif", fontWeight: 700 }}>Fortell meg mer</button>
               </div>
