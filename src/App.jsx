@@ -118,7 +118,7 @@ const portefolje = [
     desc: "Workshop med 120 ledere med mål om å utvikle og teste 14 prototyper for ulike tiltak i TøpnsbergTRAPPA. ",
     laerdom: "Man lærer mer av å lage enn å prate", faser: ["Lære", "Lage", "Prøve"],
   },
-
+];
 
 function getSectionOrder(answers) {
   var interesse = answers[1] || "alt";
