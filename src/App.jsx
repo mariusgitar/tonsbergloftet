@@ -680,9 +680,9 @@ function SeksjonFremover({ initialTab }) {
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 20 }}>Sandkassen er et rom for å teste ut idéer – digitale og ikke-digitale – uten at alt må ha en ferdig plan. Målet er å utforske løsninger på mer radikale og systemiske utfordringer som kommunen står overfor.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                { label: "Raske eksperimenter", desc: "Teste nye løsninger i liten skala – uten å forplikte seg til full implementering" },
-                { label: "Tverrfaglige team", desc: "Sette sammen folk som normalt ikke jobber sammen" },
-                { label: "Systemisk blikk", desc: "Utfordre strukturer og praksiser, ikke bare prosesser" },
+                { label: "Raske eksperimenter", desc: "Teste nye løsninger i en sandkasse uten tvangstrøya fra hjemler, økonomi og rammebetingelser." },
+                { label: "Tverrfaglige ekspertteam", desc: "Sette sammen folk som er eksperter på bygging" },
+                { label: "Definerte utfordringer", desc: "Medarbeidere og brukere er eksperter på problemstillingen, de andre bygger." },
               ].map(function(k) {
                 return (
                   <div key={k.label} style={{ background: "rgba(145,206,242,0.06)", border: "1px solid rgba(145,206,242,0.2)", borderRadius: 8, padding: "12px 16px" }}>
