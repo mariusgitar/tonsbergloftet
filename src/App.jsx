@@ -494,7 +494,7 @@ function LLPScrollytelling({ scrollContainer, answers, onSvarSet }) {
       {/* Post-seksjon */}
       <div style={{ background: OFF_WHITE, padding: "48px 24px 0" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'Caveat', cursive", fontSize: 22, color: WARM_GRAY, marginBottom: 32 }}>LLP er ikke et kurs. Det er en vane.</p>
+          <p style={{ fontFamily: "'Caveat', cursive", fontSize: 22, color: WARM_GRAY, marginBottom: 32 }}>LLP er ikke bare en prosess og en metode. Det er en vane.</p>
           {answers && answers[2] && <OppfolgingsBoks answers={answers} onSvar={onSvarSet} />}
         </div>
       </div>
